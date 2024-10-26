@@ -9,6 +9,7 @@ import {DataNeeded} from '@/forms/base-print';
 import {FormConfig} from '@/forms/form-config';
 import {DataService, RequestParams} from '@/_services/data.service';
 import {StatusData} from '@/_model/nightscout/status-data';
+import {InsulinData} from '@/_model/nightscout/insulin-data';
 import {ProfileData} from '@/_model/nightscout/profile-data';
 import {Log} from '@/_services/log.service';
 import {JsonData} from '@/_model/json-data';
@@ -231,6 +232,15 @@ Du kannst versuchen, in den Einstellungen die Anzahl an auszulesenden Profildate
         data.user.isReachable = false;
         return data;
       }
+    }
+
+    if (data.status.insulinAvailable) {
+        let url = data.user.apiUrl(endDate, 'insulin.json', {reqParams: reqParams});
+        Log.displayLink($localize`insulin`, url, {type: 'debug'});
+        let content = await this.ds.requestJson(url, reqParams);
+        if (content != null) {
+          data.insuline = InsulinData.fromJson(content);
+        }
     }
 
     let baseProfile: ProfileData;

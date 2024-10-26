@@ -10,6 +10,7 @@ export class StatusData extends JsonData {
   serverTime: Date;
   serverTimeEpoch: number;
   apiEnabled: boolean;
+  insulinAvailable: boolean;
   careportalEnabled: boolean;
   boluscalcEnabled: boolean;
   head: string;
@@ -36,9 +37,10 @@ export class StatusData extends JsonData {
     ret.version = JsonData.toText(json.version);
     ret.serverTime = JsonData.toDate(json.serverTime);
     ret.serverTimeEpoch = JsonData.toNumber(json.serverTimeEpoch);
-    ret.apiEnabled = JsonData.toBool('apiEnabled');
-    ret.careportalEnabled = JsonData.toBool('careportalEnabled');
-    ret.boluscalcEnabled = JsonData.toBool('boluscalcEnabled');
+    ret.apiEnabled = JsonData.toBool(json.apiEnabled);
+    ret.insulinAvailable = JsonData.toBool(json.insulinAvailable);
+    ret.careportalEnabled = JsonData.toBool(json.careportalEnabled);
+    ret.boluscalcEnabled = JsonData.toBool(json.boluscalcEnabled);
     ret.head = JsonData.toText(json.head);
     if (json.settings != null) {
       ret.settings = SettingsData.fromJson(json.settings);

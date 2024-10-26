@@ -4,6 +4,7 @@ import {ProfileGlucData, ProfileParams} from '@/_model/nightscout/profile-gluc-d
 import {TreatmentData} from './nightscout/treatment-data';
 import {GLOBALS, GlobalsData} from './globals-data';
 import {StatusData} from './nightscout/status-data';
+import {InsulinData} from './nightscout/insulin-data';
 import {Utils} from '@/classes/utils';
 import {ProfileStoreData} from '@/_model/nightscout/profile-store-data';
 import {ListData} from '@/_model/nightscout/list-data';
@@ -19,6 +20,7 @@ export class ReportData {
   calc = new ListData();
   lastTempBasal: TreatmentData;
   status: StatusData;
+  insuline: InsulinData;
   isForThumbs = false;
   isValid = false;
   deviceList: string[] = [];
